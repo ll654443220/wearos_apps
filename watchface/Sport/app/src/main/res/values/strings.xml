@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sport</string>
+    <string name="message">Watch face tapped</string>
+    <string name="my_analog_name">My Analog</string>
+    <string name="night">夜间模式</string>
+    <string name="animate">亮屏动画</string>
+    <string name="color">颜色选择</string>
+</resources>
