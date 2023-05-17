@@ -10,8 +10,8 @@ android {
         applicationId "com.tanxi.sport"
         minSdkVersion 28
         targetSdkVersion 30
-        versionCode 12
-        versionName "2.8"
+        versionCode 13
+        versionName "2.9"
 
     }
 

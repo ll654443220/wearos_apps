@@ -311,7 +311,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
         public void onTapCommand(int tapType, int x, int y, long eventTime) {
             switch (tapType) {
                 case TAP_TYPE_TOUCH:
-                    getCameraRotate(x,y);
+                    //getCameraRotate(x,y);
                     // The user has started touching the screen.
                     break;
                 case TAP_TYPE_TOUCH_CANCEL:
@@ -489,7 +489,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
             /*
              * Save the canvas state before we can begin to rotate it.
              */
-            setCameraRotate(canvas);
+            //setCameraRotate(canvas);
             if ("true".equals(preferences.getString("isNight",""))){
                 if (time==2){
                     if (hours>=22){
@@ -553,6 +553,8 @@ public class MyWatchFace extends CanvasWatchFaceService {
                     i=0;
                     mUpdate=false;
                 }
+
+
             }
 
             if ("true".equals(preferences.getString("isNight",""))){
