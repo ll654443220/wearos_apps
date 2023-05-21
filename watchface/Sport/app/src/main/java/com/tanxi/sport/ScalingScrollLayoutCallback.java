@@ -40,7 +40,7 @@ public class ScalingScrollLayoutCallback extends WearableLinearLayoutManager.Lay
 
         child.setScaleX(1 - progressToCenter);
         child.setScaleY(1 - progressToCenter);
-        child.setAlpha(1-progressToCenter*2.6f);
-        child.setTranslationX(progressToCenter*300);
+        child.setAlpha(1-progressToCenter*1.8f);
+        child.setTranslationX(progressToCenter*180);
     }
 }

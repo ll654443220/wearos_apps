@@ -15,12 +15,17 @@
  */
 package com.tanxi.sport;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,19 +37,24 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
     private final Context mContext;
     private final LayoutInflater mInflater;
     private List<ConfigItem> mItems;
-    public interface OnRecyclerViewListener{
-        void onItemTouch(View view, int position, MotionEvent motionEvent);
-    }
-    private OnRecyclerViewListener onRecyclerViewListener;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
-    public void setOnRecyclerViewListener(OnRecyclerViewListener mOnRecyclerViewListener){
-        this.onRecyclerViewListener=mOnRecyclerViewListener;
-    }
+//    public interface OnRecyclerViewListener{
+//        void onItemTouch(View view, int position, MotionEvent motionEvent);
+//    }
+//    private OnRecyclerViewListener onRecyclerViewListener;
+//
+//    public void setOnRecyclerViewListener(OnRecyclerViewListener mOnRecyclerViewListener){
+//        this.onRecyclerViewListener=mOnRecyclerViewListener;
+//    }
 
     public MenuRecyclerViewAdapter(Context context, List<ConfigItem> items) {
         this.mContext = context;
         this.mItems = items;
         mInflater = LayoutInflater.from(context);
+        preferences=context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        editor=preferences.edit();
     }
 
     @Override
@@ -99,6 +109,18 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
                 return true;
             }
         });
+        holder.mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    editor.putString("isAnimate", "true");
+                    editor.apply();
+                }else {
+                    editor.putString("isAnimate", "false");
+                    editor.apply();
+                }
+            }
+        });
     }
 
     @Override
@@ -113,16 +135,33 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
     static class Holder extends ViewHolder {
         TextView mTextView;
+        Switch mSwitch;
 
         public Holder(final View itemView) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.icon_text_view);
+            mSwitch=itemView.findViewById(R.id.enablesw);
+
         }
 
         /** Bind appItem info to main screen (displays the item).
          * @param item*/
         public void bind(ConfigItem item) {
             mTextView.setText(item.getItemName());
+            switch (item.getmEnable()){
+                case 0:
+                    mSwitch.setChecked(false);
+                    break; 
+                case 1:
+                    mSwitch.setChecked(true);
+                    break;
+                case 2:
+                    mSwitch.setVisibility(View.GONE);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + item.getmEnable());
+            }
+
         }
     }
 }

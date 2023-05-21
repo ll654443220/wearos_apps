@@ -15,24 +15,33 @@
  */
 package com.tanxi.sport;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 public class ConfigItem {
     private final String mItemName;
     private final int mViewType;
     private final Class mClass;
+    private int mEnable;
 
 
-    public ConfigItem(String itemName, Class<? extends Activity> clazz) {
+    public ConfigItem(String itemName, Class<? extends Activity> clazz,int enable) {
         mItemName = itemName;
         mViewType = SampleAppConstants.NORMAL;
         mClass = clazz;
+        mEnable=enable;
     }
 
     public String getItemName() {
         return mItemName;
+    }
+
+    public int getmEnable() {
+        return mEnable;
     }
 
     public int getViewType() {
