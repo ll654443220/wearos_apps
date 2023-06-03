@@ -36,6 +36,13 @@ public class ColorActivity extends WearableActivity {
         hour_g=findViewById(R.id.hour_g);
         hour_b=findViewById(R.id.hour_b);
         hour_color=findViewById(R.id.hour_color);
+        rgbR=preferences.getInt("rgbR",227);
+        rgbG=preferences.getInt("rgbG",193);
+        rgbB=preferences.getInt("rgbB",181);
+        hour_color.setBackgroundColor(Color.argb(255,rgbR,rgbG,rgbB));
+        hour_r.setHint(""+rgbR);
+        hour_g.setHint(""+rgbG);
+        hour_b.setHint(""+rgbB);
 
         hour_r.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -43,9 +50,8 @@ public class ColorActivity extends WearableActivity {
                 editor.putInt("rgbR",Integer.parseInt(hour_r.getText().toString()));
                 editor.commit();
                 rgbR=preferences.getInt("rgbR",227);
-                rgbG=preferences.getInt("rgbG",193);
-                rgbB=preferences.getInt("rgbB",181);
                 hour_color.setBackgroundColor(Color.argb(255,rgbR,rgbG,rgbB));
+                hour_r.setHint(""+rgbR);
                 return false;
             }
         });
@@ -54,10 +60,9 @@ public class ColorActivity extends WearableActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 editor.putInt("rgbG",Integer.parseInt(hour_g.getText().toString()));
                 editor.commit();
-                rgbR=preferences.getInt("rgbR",227);
                 rgbG=preferences.getInt("rgbG",193);
-                rgbB=preferences.getInt("rgbB",181);
                 hour_color.setBackgroundColor(Color.argb(255,rgbR,rgbG,rgbB));
+                hour_g.setHint(""+rgbG);
                 return false;
             }
         });
@@ -66,10 +71,9 @@ public class ColorActivity extends WearableActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 editor.putInt("rgbB",Integer.parseInt(hour_b.getText().toString()));
                 editor.commit();
-                rgbR=preferences.getInt("rgbR",227);
-                rgbG=preferences.getInt("rgbG",193);
                 rgbB=preferences.getInt("rgbB",181);
                 hour_color.setBackgroundColor(Color.argb(255,rgbR,rgbG,rgbB));
+                hour_b.setHint(""+rgbB);
                 return false;
             }
         });
