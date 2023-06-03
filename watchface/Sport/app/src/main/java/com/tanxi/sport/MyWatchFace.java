@@ -414,7 +414,6 @@ public class MyWatchFace extends CanvasWatchFaceService {
             else {
                 hours = mCalendar.get(Calendar.HOUR);
                 time=mCalendar.get(Calendar.AM_PM);
-                Log.i("activity","12");
             }
             switch (time){
                 case 0:
@@ -452,6 +451,13 @@ public class MyWatchFace extends CanvasWatchFaceService {
             }else {
                 animate=false;
             }
+
+            int rgbR;
+            int rgbG;
+            int rgbB;
+            rgbR=preferences.getInt("rgbR",227);
+            rgbG=preferences.getInt("rgbG",193);
+            rgbB=preferences.getInt("rgbB",181);
 
             String weeks;
             switch (week){
@@ -499,30 +505,30 @@ public class MyWatchFace extends CanvasWatchFaceService {
                         mMinutePaint.setColor(Color.WHITE);
                         mHourPaint.setColor(Color.WHITE);
                     }else {
-                        mMinutePaint.setColor(Color.argb(255,227,193,181));
-                        mHourPaint.setColor(Color.argb(255,227,193,181));
+                        mMinutePaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
+                        mHourPaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
                     }
                 }else if (time==1){
                     if (hours>=10){
                         mMinutePaint.setColor(Color.WHITE);
                         mHourPaint.setColor(Color.WHITE);
                     }else {
-                        mMinutePaint.setColor(Color.argb(255,227,193,181));
-                        mHourPaint.setColor(Color.argb(255,227,193,181));
+                        mMinutePaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
+                        mHourPaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
                     }
                 }else {
                     if (hours<6){
                         mMinutePaint.setColor(Color.WHITE);
                         mHourPaint.setColor(Color.WHITE);
                     }else {
-                        mMinutePaint.setColor(Color.argb(255,227,193,181));
-                        mHourPaint.setColor(Color.argb(255,227,193,181));
+                        mMinutePaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
+                        mHourPaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
                     }
                 }
 
             }else {
-                mMinutePaint.setColor(Color.argb(255,227,193,181));
-                mHourPaint.setColor(Color.argb(255,227,193,181));
+                mMinutePaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
+                mHourPaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
             }
 
             if (hours<10){

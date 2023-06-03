@@ -16,7 +16,7 @@
             <View
                 android:id="@+id/hour_color"
                 android:layout_width="match_parent"
-                android:layout_height="80dp" />
+                android:layout_height="40dp" />
 <!--            <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
@@ -74,10 +74,22 @@
                     android:inputType="number"
                     android:gravity="center"/>
             </LinearLayout>
-            <View
-                android:id="@+id/minute_color"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"/>
+<!--            <View-->
+<!--                android:id="@+id/minute_color"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="80dp"/>-->
+<!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:gravity="center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="#"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <EditText&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="90dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
 <!--            <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
@@ -85,56 +97,44 @@
 <!--                <TextView-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="#"/>-->
+<!--                    android:text="R:"/>-->
 <!--                <EditText-->
+<!--                    android:id="@+id/minute_r"-->
 <!--                    android:layout_width="90dp"-->
-<!--                    android:layout_height="wrap_content"/>-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="number"-->
+<!--                    android:gravity="center"/>-->
 <!--            </LinearLayout>-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="R:"/>
-                <EditText
-                    android:id="@+id/minute_r"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:gravity="center"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="G:"/>
-                <EditText
-                    android:id="@+id/minute_g"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:gravity="center"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="B:"/>
-                <EditText
-                    android:id="@+id/minute_b"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:gravity="center"/>
-            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="G:"/>-->
+<!--                <EditText-->
+<!--                    android:id="@+id/minute_g"-->
+<!--                    android:layout_width="90dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="number"-->
+<!--                    android:gravity="center"/>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="B:"/>-->
+<!--                <EditText-->
+<!--                    android:id="@+id/minute_b"-->
+<!--                    android:layout_width="90dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="number"-->
+<!--                    android:gravity="center"/>-->
+<!--            </LinearLayout>-->
         </LinearLayout>
     </ScrollView>
 
