@@ -53,4 +53,8 @@ public class ConfigItem {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+    public void setChecked(boolean checked,Context context) {
+
+    }
 }
