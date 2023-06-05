@@ -112,7 +112,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         holder.mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(mItems.get(pos).getItemName().equals("亮屏动画")){
+                if(mContext.getString(R.string.animate).equals(mItems.get(pos).getItemName())){
                     if (isChecked){
                         editor.putString("isAnimate", "true");
                         editor.apply();
@@ -120,7 +120,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
                         editor.putString("isAnimate", "false");
                         editor.apply();
                     }
-                }else if (mItems.get(pos).getItemName().equals("夜间模式")){
+                }else if (mContext.getString(R.string.night).equals(mItems.get(pos).getItemName())){
 
                     if (isChecked){
                         editor.putString("isNight", "true");

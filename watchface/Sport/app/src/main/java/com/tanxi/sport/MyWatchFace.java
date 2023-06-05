@@ -496,12 +496,17 @@ public class MyWatchFace extends CanvasWatchFaceService {
              * Save the canvas state before we can begin to rotate it.
              */
             //setCameraRotate(canvas);
+
+            int night,morning;
+            night=preferences.getInt("night",22);
+            morning=preferences.getInt("morning",6);
+
             if ("true".equals(preferences.getString("isNight",""))){
                 if (time==2){
-                    if (hours>=22){
+                    if (hours>=night){
                         mMinutePaint.setColor(Color.WHITE);
                         mHourPaint.setColor(Color.WHITE);
-                    }else if (hours<6){
+                    }else if (hours<morning){
                         mMinutePaint.setColor(Color.WHITE);
                         mHourPaint.setColor(Color.WHITE);
                     }else {
@@ -509,7 +514,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
                         mHourPaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
                     }
                 }else if (time==1){
-                    if (hours>=10){
+                    if (hours>=(night-12)){
                         mMinutePaint.setColor(Color.WHITE);
                         mHourPaint.setColor(Color.WHITE);
                     }else {
@@ -517,7 +522,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
                         mHourPaint.setColor(Color.argb(255,rgbR,rgbG,rgbB));
                     }
                 }else {
-                    if (hours<6){
+                    if (hours<morning){
                         mMinutePaint.setColor(Color.WHITE);
                         mHourPaint.setColor(Color.WHITE);
                     }else {
@@ -565,17 +570,17 @@ public class MyWatchFace extends CanvasWatchFaceService {
 
             if ("true".equals(preferences.getString("isNight",""))){
                 if (time==2){
-                    if (hours>=22){
+                    if (hours>=night){
                         canvas.drawRect(0,0,mCenterX*2,mCenterY*2,mNightPaint);
-                    }else if (hours<6){
+                    }else if (hours<morning){
                         canvas.drawRect(0,0,mCenterX*2,mCenterY*2,mNightPaint);
                     }
                 }else if (time==1){
-                    if (hours>=10){
+                    if (hours>=(night-12)){
                         canvas.drawRect(0,0,mCenterX*2,mCenterY*2,mNightPaint);
                     }
                 }else {
-                    if (hours<6){
+                    if (hours<morning){
                         canvas.drawRect(0,0,mCenterX*2,mCenterY*2,mNightPaint);
                     }
                 }
