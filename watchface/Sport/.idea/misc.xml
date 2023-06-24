@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GitHub/wearos_apps/watchface/Sport/app/src/main/res/drawable/ic_baseline_battery_full_24.xml" value="0.928125" />
         <entry key="..\:/GitHub/wearos_apps/watchface/Sport/app/src/main/res/layout/activity_about.xml" value="0.8569078947368421" />
         <entry key="..\:/GitHub/wearos_apps/watchface/Sport/app/src/main/res/layout/activity_animate.xml" value="0.8569078947368421" />
         <entry key="..\:/GitHub/wearos_apps/watchface/Sport/app/src/main/res/layout/activity_color.xml" value="0.7461300309597523" />

@@ -19,6 +19,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.Typeface;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -120,6 +121,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
         private Paint mDatePaint;
         private Paint mRectPaint;
         private Paint mNightPaint;
+        private Paint mBatteryPaint;
         private boolean mAmbient;
         private boolean mLowBitAmbient;
         private boolean mBurnInProtection;
@@ -131,6 +133,9 @@ public class MyWatchFace extends CanvasWatchFaceService {
         private Matrix matrix=new Matrix();
         float mCameraRotateX,mCameraRotateY;
         int ani=0;
+
+        BatteryManager batteryManager= (BatteryManager) getSystemService(MyWatchFace.BATTERY_SERVICE);
+
 
         @Override
         public void onCreate(SurfaceHolder holder) {
@@ -199,6 +204,15 @@ public class MyWatchFace extends CanvasWatchFaceService {
             mNightPaint=new Paint();
             mNightPaint.setColor(Color.BLACK);
             mNightPaint.setAlpha(200);
+
+            mBatteryPaint=new Paint();
+            mBatteryPaint.setColor(mWatchHandColor);
+            mDatePaint.setAntiAlias(true);
+            mDatePaint.setStrokeCap(Paint.Cap.ROUND);
+            mBatteryPaint.setStyle(Paint.Style.FILL);
+            mBatteryPaint.setStrokeJoin(Paint.Join.ROUND);
+//            mBatteryPaint.setStrokeWidth(3);
+//            mDatePaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
         }
 
         @Override
@@ -441,8 +455,21 @@ public class MyWatchFace extends CanvasWatchFaceService {
             int date=mCalendar.get(Calendar.DAY_OF_MONTH);
             int mounth=mCalendar.get(Calendar.MONTH);
             int week=mCalendar.get(Calendar.DAY_OF_WEEK);
-
             int minutes = mCalendar.get(Calendar.MINUTE);
+
+            int battery=batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+            boolean isCharging=batteryManager.isCharging();
+            if (isCharging){
+                mBatteryPaint.setColor(Color.GREEN);
+            }else {
+                if (battery>=40){
+                    mBatteryPaint.setColor(Color.WHITE);
+                }else if (battery>=20){
+                    mBatteryPaint.setColor(Color.YELLOW);
+                }else {
+                    mBatteryPaint.setColor(Color.RED);
+                }
+            }
 
             preferences=getSharedPreferences("config",MODE_PRIVATE);
             editor=preferences.edit();
@@ -555,10 +582,13 @@ public class MyWatchFace extends CanvasWatchFaceService {
             if (!mAmbient) {
                 if (animate){
                     mDatePaint.setAlpha(i*255/30);
+                    mBatteryPaint.setAlpha(i*255/30);
                 }
                 canvas.drawText(timer,mCenterX*4/9,mCenterY*28/20,mDatePaint);
                 canvas.drawText(weeks,mCenterX*4/9,mCenterY*31/20,mDatePaint);
                 canvas.drawText(date+"",mCenterX*4/9,mCenterY*17/10,mDatePaint);
+                canvas.drawRoundRect(mCenterX*6/36,mCenterY*17/10-22,mCenterX*8/36,mCenterY*17/10,10,10,mBatteryPaint);
+//                canvas.drawLine(mCenterX*7/36,mCenterY*17/10,mCenterX*7/36,mCenterY*16/10,mBatteryPaint);
             }else {
                 if (animate){
                     i=0;
@@ -590,26 +620,26 @@ public class MyWatchFace extends CanvasWatchFaceService {
             canvas.restore();
         }
 
-        private void setCameraRotate(Canvas canvas) {
-            ani++;
-            if (0<ani&&ani<3){
-            }else {
-                mUpdate=false;
-                ani=0;
-                mCameraRotateX=0;
-                mCameraRotateY=0;
-            }
-            matrix.reset();
-            camera.save();
-            camera.rotateX(mCameraRotateX);
-            camera.rotateY(mCameraRotateY);
-            camera.getMatrix(matrix);
-            camera.restore();
-
-            matrix.preTranslate(-mCenterX,-mCenterY);
-            matrix.postTranslate(mCenterX,mCenterY);
-            canvas.concat(matrix);
-        }
+//        private void setCameraRotate(Canvas canvas) {
+//            ani++;
+//            if (0<ani&&ani<3){
+//            }else {
+//                mUpdate=false;
+//                ani=0;
+//                mCameraRotateX=0;
+//                mCameraRotateY=0;
+//            }
+//            matrix.reset();
+//            camera.save();
+//            camera.rotateX(mCameraRotateX);
+//            camera.rotateY(mCameraRotateY);
+//            camera.getMatrix(matrix);
+//            camera.restore();
+//
+//            matrix.preTranslate(-mCenterX,-mCenterY);
+//            matrix.postTranslate(mCenterX,mCenterY);
+//            canvas.concat(matrix);
+//        }
 
         @Override
         public void onVisibilityChanged(boolean visible) {
